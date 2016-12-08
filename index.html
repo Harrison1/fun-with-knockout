@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Meta-Information -->
+	    <title>KO</title>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="description" content="KO">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Latest compiled and minified Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 		<link href="./styles/css/main.css" rel="stylesheet">
+ -->	</head>
+	<body>
+		<div class="calculator"> 
+		    <p>First name: <input data-bind='value: firstName' /></p> 
+		    <p>Last name: <input data-bind='value: lastName' /></p> 
+		    <h2>Hello, <span data-bind='text: fullName'> </span>!</h2>  
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js" integrity="sha256-nJmMP2GQYaikxBkjevWxCZr1nFtv4QxwCbTE7lMlBT0=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js" integrity="sha256-PX9zWVaICUCeklczWaS9DLBb9uGN7pCkCT0Kyz1elRo=" crossorigin="anonymous"></script>
+		<script>
+			// Here's my data model
+			var ViewModel = function(first, last) {
+			    this.firstName = ko.observable(first);
+			    this.lastName = ko.observable(last);
+			 
+			    this.fullName = ko.computed(function() {
+			        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+			        return this.firstName() + " " + this.lastName();
+			    }, this);
+			};
+			 
+			ko.applyBindings(new ViewModel("Planet", "Earth")); // This makes Knockout get to work
+		</script>
+	</body>
+</html>
